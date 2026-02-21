@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Peta Interaktif - WebGIS MapLibre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background-color: #eee; /* Warna cadangan jika peta loading */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <table width="100%" cellspacing="0" cellpadding="10">
+                <tr>
+                    <td><strong>Task 8 - Rayhan</strong></td>
+                    <td align="right">
+                        <a href="index.html">Beranda</a> | 
+                        <a href="about.html">Tentang</a> | 
+                        <a href="map.html">Peta Interaktif</a>
+                    </td>
+                </tr>
+            </table>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Eksplorasi Data Spasial Indonesia</h2>
+        <p>Gunakan kursor untuk navigasi. Peta ini dirender menggunakan <b>MapLibre GL JS</b> dengan teknologi vektor.</p>
+
+        <div id="map"></div>
+
+        <section style="margin-top: 20px;">
+            <h4>Legenda & Informasi</h4>
+            <table border="1">
+                <tr>
+                    <td><strong>Sumber Data</strong></td>
+                    <td>OpenStreetMap (OSM) via CartoDB</td>
+                </tr>
+                <tr>
+                    <td><strong>Koordinat Default</strong></td>
+                    <td>Pusat Indonesia (Jakarta)</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rayhan Rahman Miraj | Teknologi: MapLibre GL JS</p>
+    </footer>
+
+    <script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+    
+    <script>
+        // Gunakan window.onload agar map mencari ID 'map' setelah HTML selesai dimuat
+        window.onload = function() {
+            
+            // Perbaikan: gunakan 'maplibregl', bukan 'mlgl'
+            const map = new maplibregl.Map({
+                container: 'map', 
+                style: 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json', 
+                center: [106.8271, -6.1751], 
+                zoom: 12 
+            });
+
+            // Tambahkan kontrol navigasi
+            map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+            // Tambahkan Marker
+            const marker = new maplibregl.Marker({ color: '#3498db' })
+                .setLngLat([106.8271, -6.1751])
+                .setPopup(new maplibregl.Popup().setHTML("<h4>Monumen Nasional</h4><p>Pusat Kota Jakarta</p>"))
+                .addTo(map);
+
+            // Memastikan peta menyesuaikan ukuran container
+            map.on('load', () => {
+                map.resize();
+            });
+        };
+    </script>
+</body>
+</html>
