@@ -163,3 +163,22 @@ mark {
     padding: 2px 5px;
     border-radius: 4px;
 }
+
+/* Update pada bagian main di style.css */
+main {
+    max-width: 1000px;    /* Membatasi lebar maksimal konten */
+    margin: 40px auto;    /* 'auto' akan membagi sisa ruang kanan-kiri secara seimbang (tengah) */
+    padding: 40px;        /* Memberi ruang antara teks dengan garis tepi kotak */
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+/* Tambahan untuk Navbar agar ikut ke tengah */
+nav {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
